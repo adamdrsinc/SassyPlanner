@@ -1,0 +1,119 @@
+﻿body {
+    background-color: #FFFDF6;
+}
+
+.large-image {
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: 100%; 
+}
+
+
+
+/*  cart button */
+#cart-button {
+    
+    background-color: #FFE5D9;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/*  buy button */
+#buy-button {
+    
+    background-color: #FFE5D9;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+
+
+/* Accordion */
+
+.accordion-flush.accordion {
+    --bs-accordion-btn-bg: #ffffff;
+    --bs-accordion-active-bg: mintcream;
+    --bs-accordion-active-color: #000000;
+    --bs-accordion-bg: mintcream;
+    --bs-accordion-color: #000000;
+    --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-btn-focus-border-color: unset;
+}
+
+.accordion-flush .accordion-button {
+    border-top: 1px solid #000000;
+}
+
+.accordion-flush .accordion-item:last-child .accordion-button.collapsed,
+.accordion-flush .accordion-item:last-child .accordion-body {
+    border-bottom: 1px solid #000000;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/%3E%3C/svg%3E");
+    transition: all 0.5s;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/%3E%3C/svg%3E");
+}
+
+h2 {
+    font-family: Georgia;
+}
+
+h3 {
+    font-family: Georgia;
+}
+h5 {
+    font-family: Georgia;
+}
+p {
+    font-family: Calibri;
+}
+ul {
+    font-family: Calibri;
+}
+
+#details-body-styling .form-control {
+    
+    font-family: Calibri; 
+}
+
+#details-body-styling .col-form-label {
+    font-family: Georgia;
+}
+
+/* Style for the carousel */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+    .carousel::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .carousel img {
+        width: 100px; 
+        height: 100px; 
+        margin-right: 10px; 
+        cursor: pointer;
+    }

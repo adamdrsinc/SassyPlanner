@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - currentworkingsassyplanner</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/currentworkingsassyplanner.styles.css" asp-append-version="true" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/testbootstrap.css" />
+
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Icon Library -->
+    <script src="https://kit.fontawesome.com/3ca2188e47.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- Creates a cookie on any page the user visits on the website 
+@inject IHttpContextAccessor httpContextAccessor;
+@{
+    //CookieOptions cookieOptions = new CookieOptions();
+    //cookieOptions.Expires = DateTime.Now.AddDays(7);
+    //cookieOptions.IsEssential = true;
+    //cookieOptions.Path = "/";
+
+    // Placeholder cookie value
+    //httpContextAccessor.HttpContext.Response.Cookies.Append("SassyPlannerCookie", "1", cookieOptions);
+}
+-->
+<body>
+    <header>
+        <!-- This code was heavily edited by Sam, initially made by Olly-->
+        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light border-bottom box-shadow mb-3">
+            <div class="container justify-content-start">
+                <div  ><a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/img/sassyLogo.png" /></a></div>
+                <div class="d-flex flex-row">
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <i id="toggler" class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <div id="navbar" class="navbar-collapse collapse d-xl-inline-flex ">
+                        <ul class="navbar-nav flex-grow-1 ">
+                            <li class="nav-item">
+                                <a id="nav-style" class="nav-link text-dark mx-2" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-style" class="nav-link text-dark mx-2" asp-area="" asp-page="/Shop">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-style" class="nav-link text-dark mx-2" asp-area="" asp-page="/FAQ">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-style" class="nav-link text-dark mx-2" asp-area="" asp-page="/Contact">Contact</a>
+                            </li>
+                            @{
+                                var inAdminRole = User.IsInRole("Admin");
+                                if (inAdminRole)
+                                {
+                                    <li class="nav-item">
+                                        <a id="nav-style" class="nav-link text-dark mx-2" asp-area="" asp-page="/Admin/Index">Admin</a>
+                                    </li>
+                                }
+                             }
+                        </ul>
+                        
+                        <div id="" class="d-flex flex-row">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div id="bod" class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- Footer -->
+    <div>
+        <!--Code partly from -->
+        <footer id="footer" class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top">
+            <div class="col pb-3">
+                <a asp-page="/Index"><h1 class="mx-5"><img src="~/img/sassyLogo.png" /></h1> </a>
+                <div id="footer-socials">
+                    <a id="social-button-footer" class="tiktok-black" href="@Html.Raw("https://www.tiktok.com/@officialsassyplanner?lang=en")"><i class="fa-brands fa-tiktok"></i></a>
+                    <a class="etsy-footer" href="https://www.etsy.com/uk/shop/TheSassyPlannerUK"><i class="fa-brands fa-etsy"></i></a>
+                    <a id="social-button-footer" class="facebook-blue" href="https://www.facebook.com/thesassyplanner/"><i class="fa-brands fa-facebook"></i></a>
+                    <a id="social-button-footer" class="insta-grad" href="https://www.instagram.com/sassyplannerco/"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                
+            </div>
+            <div class="col pb-3">
+            </div>
+
+
+            <div class="col pb-3">
+                <h4 style="font-family:Georgia;"><strong class="text-dark mx-4">Order</strong></h4>
+                <ul class="nav flex-column" style="font-family:Calibri;font-size:1.2em;">
+                    <li class="footer-item pb-2 mx-5"><a asp-page="/Index" class="nav-link p-0 text-body-secondary text-dark">Home</a></li>
+                    <li class="footer-item pb-2 mx-5"><a asp-page="/Shop" class="nav-link p-0 text-body-secondary text-dark">Shop</a></li>
+                    <li class="footer-item pb-2 mx-5"><a asp-page="/Basket" class="nav-link p-0 text-body-secondary text-dark">Basket</a></li>
+                </ul>
+            </div>
+            <div class="col pb-3">
+                <h4 style="font-family:Georgia;"><strong class="text-dark mx-4">Other</strong></h4>
+                <ul class="nav flex-column" style="font-family:Calibri;font-size:1.2em;">
+                    <li class="footer-item pb-2 mx-5"><a asp-page="/FAQ" class="nav-link p-0 text-body-secondary text-dark">FAQ</a></li>
+                    <li class="footer-item pb-2 mx-5"><a asp-page="/Contact" class="nav-link p-0 text-body-secondary text-dark">Contact</a></li>
+                    @{
+                        if (inAdminRole)
+                        {
+                            <li class="footer-item pb-2 mx-5"><a asp-page="/Admin/Index" class="nav-link p-0 text-body-secondary text-dark">Admin</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+
+
+            <!--
+                <div class="col pb-3">
+                <h4 style="font-family:Georgia;"><strong class="text-dark mx-5">Contact us</strong></h4>
+                <ul class="nav flex-column" style="font-family:Calibri;font-size:1.3em;">
+
+                </ul>
+            </div>
+            -->
+
+        </footer>
+    </div>
+</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)

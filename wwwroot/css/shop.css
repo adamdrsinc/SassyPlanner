@@ -1,0 +1,103 @@
+﻿/* The below code was written by Adam */
+body {
+    background-color: #FFFDF6 !important;
+}
+
+#parent-container{
+    flex-direction: row;
+}
+
+#header-font{
+    font-family: Georgia;
+}
+
+#body-font{
+    font-family: Calibri;
+}
+
+.card-header {
+    background-color: #FFE5D9; /* Set background color for accordion header */
+}
+
+#planner-title-font {
+    /* edited by Sam */
+    font-family: Georgia !important;
+    font-size: 1.2em !important;
+    background-color: #CBDECE !important;
+    border-radius: 6px !important;
+    color: black !important;
+}
+
+.item {
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+#image-settings {
+    /* edited by Sam */
+    width: 30em;
+    /*height: 14.5em;*/
+}
+
+/* End of Adam's code */
+
+/* The below code was written by Sam */
+#filter-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+
+#filter-button-child {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1em;
+    padding: 0.2em;
+    padding-left:0;
+    text-align:left
+}
+
+.filter-container {
+    position: relative;
+}
+
+.fa-plus {
+    transition: transform 0.3s ease;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 1.5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px
+}
+
+.child-dropdown-content {
+    display: none;
+    background-color: #fff;
+    padding: 1em;
+}
+
+#button {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+}
+
+#h3-heading {
+    margin: 2vw;
+    font-family: Georgia;
+}
+/* End of Sam's code */

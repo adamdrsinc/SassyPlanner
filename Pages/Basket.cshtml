@@ -1,0 +1,76 @@
+﻿@page
+@model currentworkingsassyplanner.Pages.BasketModel
+@{
+    ViewData["Title"] = "Sassy Planner Basket";
+}
+@using currentworkingsassyplanner.Data
+@using Microsoft.Extensions.Options
+
+<!--made by Alex, edited by Sam-->
+
+<head>
+    <link rel="stylesheet" href="~/css/basket.css" />
+</head>
+
+<body class="text-center"> 
+    <h1 class="mt-5"> Basket </h1>
+    
+    @if(Model.isLoggedIn == false)
+    {
+        <p>Please log in to view your basket</p>
+    }
+    else if (Model.Items == null || Model.Items.Count == 0) //if Items is null (BasketID doesn't exist), or there are no items in the basket
+    {
+
+        <p>Your Basket is empty, or it might not exist.</p>
+        <a asp-page="/OrderConfirmation"><button class="link-primary">View Order Conf Page</button></a> //temporary, used to access order confirmation
+    }
+    else //otherwise display info about items in the basket
+    {
+        <p>Items in your basket: </p>
+    
+            
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Personalisation</th>
+                            <th>Spiral Colour</th>
+                            <th>Start Month</th>
+                            <th>Internal Pages</th>
+                            <th>Planner Size</th>
+                            @* <th>Quantity</th> *@
+                            <th>Item Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @for(int i = 0; i < Model.Items.Count(); i++)
+                {
+                    <form method="post" asp-page-handler="Delete" asp-route-basketItemID="@Model.Items[i].BasketItemID">
+
+                    <tr>
+                        <td>@Model.prodName[i]</td>
+                        <td>@Model.Items[i].Personalisation</td>
+                        <td>@Model.Items[i].SpiralColour</td>
+                        <td>@Model.Items[i].StartMonth</td>
+                        <td>@Model.Items[i].InternalPages</td>
+                        <td>@Model.Items[i].PlannerSize</td>
+                        @* <td>@Model.Items[i].Quantity.ToString()</td> *@
+                        <td>@Model.prodPrice[i].ToString("C")</td>
+                        <td>
+                            <button type="submit"> Delete </button>
+                        </td>
+                    </tr>
+                    </form>
+                }
+                
+                    </tbody>
+                </table>
+
+                <h2>Order Total: @Model.Total.ToString("C")</h2>
+
+        <a asp-page="/CheckOut"><button id="button" class="btn py-2 px-3 my-1 fw-bold">Proceed to Checkout</button></a>
+
+    }
+</body>

@@ -1,0 +1,268 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var inMemberRole = User.IsInRole("Member");
+    var inAdminRole = User.IsInRole("Admin");
+}
+<!-- All code on this page was made by Sam -->
+<head>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/index.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/testbootstrap.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Icon Library -->
+    <script src="https://kit.fontawesome.com/3ca2188e47.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body id="off-white">
+    <div id="parent-container" class="d-flex">
+        <!--Enter email form for discount-->
+        <div id="email-form" class="container align-self-center">
+            <form method="post">
+
+                <div class="form-group py-2 ">
+                    <h4 id="georgia-font" class="fw-bold">Subscribe to the newsletter for a discount!</h4>
+                    <input asp-for="m_Email" />
+                </div>
+                @if (Model.m_IsValid == false)
+                {
+                    <div>
+                        <em id="calibri-font" class="text-danger">Invalid Email, please try again</em>
+                    </div>
+                }
+                @if (Model.m_Discount != null)
+                {
+                    <div>
+                        <p id="calibri-font" class="text">Thank you for subscribing! Here's your discount code: <strong>@Model.m_Discount</strong></p>
+                    </div>
+                }
+                <button id="button" class="btn py-2 px-3 my-1 fw-bold" type="submit" asp-page-handler="Submit">Submit</button>
+
+            </form>
+        </div>
+        
+        <!--Image carousel with clickable products-->
+        <div class="d-flex">
+                <div class="fixed-height-carousel">
+                    <div id="carousels" class="carousel slide carousel-fade" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousels" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousels" data-slide-to="1"></li>
+                            <li data-target="#carousels" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="container">
+                                    <div class="d-flex">
+                                    
+                                    @if(Model.m_ProductList.Count >= 2)
+                                    {
+                                        for (int i = 0; i <= 1; i++)
+                                        {
+                                            <a asp-page="/Details" asp-route-id="@Model.m_ProductList[i].ProductID">
+                                                @try
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.m_ProductList[i].ProductImageData))" alt="@Model.m_ProductList[i].ProductImageDescription" />
+                                                }
+                                                catch
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="~/img/blurredImg.png" alt="No image found" />
+                                                }
+                                            </a>
+                                        }
+                                    }
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="d-flex">
+                                    @if (Model.m_ProductList.Count >= 4)
+                                    {
+                                        for (int i = 2; i <= 3; i++)
+                                        {
+                                            <a asp-page="/Details" asp-route-id="@Model.m_ProductList[i].ProductID">
+                                                @try
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.m_ProductList[i].ProductImageData))" alt="@Model.m_ProductList[i].ProductImageDescription" />
+                                                }
+                                                catch
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="~/img/blurredImg.png" alt="No image found" />
+                                                }
+                                            </a>
+                                        }
+                                    }
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="d-flex">
+                                    @if (Model.m_ProductList.Count == 6)
+                                    {
+                                        for (int i = 4; i <= 5; i++)
+                                        {
+                                            <a asp-page="/Details" asp-route-id="@Model.m_ProductList[i].ProductID">
+                                                @try
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.m_ProductList[i].ProductImageData))" alt="@Model.m_ProductList[i].ProductImageDescription" />
+                                                }
+                                                catch
+                                                {
+                                                    <img id="carousel-img" class="m-2 img-fluid" src="~/img/blurredImg.png" alt="No image found" />
+                                                }
+                                            </a>
+                                        }
+                                    }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <script src="/js/carousel.js"></script>
+        </div>
+    </div>
+
+    <!--Decorative background flower (this image is free to use and doesnt require credit)-->
+    <img src="~/img/back-flower.png" id="back-img1" />
+
+    <!--Info about products section-->
+    <div id="about-section" class="mt-4">
+        <h2 id="h3-heading"><b>The Most Beautiful Diary You Will Ever Own!</b></h2>
+        <p id="about-description">Full colour inside and out, designed and carefully made in Chester, England just for you - nothing imported here... The Sassy Planner is a <b>100% British Company!</b></p>
+        <div id="parent-container2" class="d-flex">
+            <div id="features-list">
+                <ul>
+                    <li class="features-item"><b>Full Colour</b> or <b>Neutral</b> Inside</li>
+                    <li class="features-item"><b>120gsm Recycled</b> Bright White Paper</li>
+                    <li class="features-item">Week To View Across 2 Pages</li>
+                    <li class="features-item"><b>Reg</b> Pages and <b>Notes</b> Pages</li>
+                    <li class="features-item"><b>August</b> or <b>September</b> Start</li>
+                    <li class="features-item"><b>Yearly & Monthly</b> Views</li>
+                    <li class="features-item">Monthly Pages</li>
+                    <li class="features-item">Soft Cover <b>Super Durable</b></li>
+                    <li class="features-item"><b>Customisable</b> Front Cover <i>(Add Name)</i></li>
+                </ul>
+            </div>
+            <div id="info">
+                <p class="info-line">Inside the planner you will find an assortment of colours to get you through the months! </p>
+                <p class="info-line">A wonderful layout with a full colour printed background each month a new design!</p>
+                <a asp-page="/Shop"><button id="button-enlarged-brown" class="btn py-2 px-3 mt-4 mb-4 fw-bold">Shop All Planners Here!</button></a>
+            </div>
+            <div id="info">
+                <p class="info-line">All my planners are <b>designed & handmade in Chester</b> by myself...</p>
+                <p class="info-line">The materials are <b>UK sourced</b> and all my thick paper stock is made from <b>recycled heavyweight bright white paper</b> - from a local paper mill, perfect for those pens we adore!</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Decorative background image-->
+    <img src="~/img/back-flower.png" id="back-img2" />
+
+    <div id="video-section">
+        <h1 id="h3-heading" class="mt-3 pt-4"><b>Look Inside The Planners!</b></h1>
+        <div id="playable-video-container">
+            <iframe id="video-player" width="480" height="400" src="https://www.youtube.com/embed/xfuvw7RV4bM?autoplay=0" frameborder="0" allowfullscreen></iframe>
+            <div id="thumbnail-carousel" class="carousel"></div>
+            <button id="prevButton" class="btn"><i class="fa fa-arrow-left"></i>    <b>Prev</b></button>
+            <button id="nextButton" class="btn"><b>Next</b>    <i class="fa fa-arrow-right"></i></button>
+        </div>
+        
+
+        <script src="~/js/videoPlayer.js"></script>
+        <script>window.addEventListener('resize', checkWindowSize);</script>
+
+    </div>
+
+    <!--About the founder and socials section as tabs-->
+    <div>
+
+        <!-- Code below adapted from W3Schools.com -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'socials')">Socials</button>
+            <button id="aboutBtn" class="tablinks" onclick="openTab(event, 'about')">Meet The Founder</button>
+        </div>
+
+        <div id="about" class="tabcontent">
+            <div class="wrap">
+                <img id="andrea" src="~/img/Screenshot 2024-05-08 132439.png" alt="Picture of Andrea">
+            </div>
+            <h3 id="about-title">Dear Planner Friends....</h3>
+            <p class="about-text">The Sassy Planner™ is the home of quirky unique handmade diaries, made by myself, Andrea.  I make full year planners and diaries for everyone who loves a pretty planner & teacher planners in the mid year.  I mean, who needs to look at a boring diary (imported from China!) when you can have a Sassy Planner made in England!</p>
+            <p class="about-text">I hope you find something you love in my store and I am certain you will not find anything else like it elsewhere...  If you do let me know! In the words of Scrappy Doo... 'let me at em' !!</p>
+            <p class="about-text">I have been into Graphic Design for as long as I can remember... Totally self taught - I have always been very arty and creative, Whether it be through my other passions (singing and also writing) it's always served me well with creating gig posters, CD covers and magazine editing... Yes I used to own a magazine!</p>
+            <p class="about-text">I am very much a planner girl at heart and love all things girly, pink gold & planning. Hence, how my very first wall planner came to fruition. There was nothing out there I liked, so I made it myself!  Then I was trying every diary under the sun to find my perfect planner.  I gave up.  I designed one myself.  People loved it & use my diaries all over the world now!</p>
+            <p class="about-text">I get so many messages telling me how much people enjoy using my diary and that they couldn't ever use another - that will do for me!  I couldn't use another now either!</p>
+            <p class="about-text">I used to be a singer previously (in another life) and I live in Chester with my 2 young boys.</p>
+            <p class="about-text">My office is a mini factory - I should get premises really, (EDIT!! I GOT PREMISES) but I love to be able to work from home.  I won't outsource either to a commercial printer or especially China - they won't do it like I do it and who needs that carbon footprint?!  Gosh, I sound like my dad now :-)  but i do love my paper and technique!  Etsy is where I started out selling - I still have my Etsy Shop by the way...</p>
+            <p class="about-text">I hope you love my products as much as I do!  I would absolutely love it if you subscribe below for updates (and so i can let you know every year when the next year's planners are out!) and keep in touch...</p>
+            <p class="about-text">I love hearing about your happy mail when it arrives! x</p>
+        </div>
+
+        <div id="socials" class="tabcontent">
+            <h2 id="about-title">Join Me On Instagram!</h2>
+            <div id="parent-container3" class="d-flex justify-content-between mt-3">
+                <!-- Instagram post embeds -->
+                <div id="post1">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C3Ykw3_sBEC/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px;"><div style="padding:16px;"> <a href="https://www.instagram.com/p/C3Ykw3_sBEC/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/C3Ykw3_sBEC/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Andrea | The Sassy Planner 📖🌟 (sassyplannerco)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
+                </div>
+                <div id="post2">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C3pyCmftpF9/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; padding:0;"><div style="padding:16px;"> <a href="https://www.instagram.com/p/C3pyCmftpF9/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/C3pyCmftpF9/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Andrea | The Sassy Planner 📖🌟 (sassyplannerco)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
+                </div>
+                <div id="post3">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/CzRTU8QISQM/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px;"><div style="padding:16px;"> <a href="https://www.instagram.com/p/CzRTU8QISQM/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/CzRTU8QISQM/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Andrea | The Sassy Planner 📖🌟 (sassyplannerco)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
+                </div>
+            </div>
+            <div>
+                <a id="button-enlarged" class="btn my-4" href="https://www.instagram.com/sassyplannerco/?utm_source=ig_embed&amp;ig_rid=badd6edf-0cfe-4d0f-96bc-c94e8e8c610c" data-ios-link="user?username=sassyplannerco&amp;utm_source=ig_embed&amp;ig_rid=badd6edf-0cfe-4d0f-96bc-c94e8e8c610c" data-log-event="profileButtonClick" target="_blank"><b>Click here to view the rest of my page</b></a>
+            </div>
+            <div class="mb-5">
+                <h2 id="about-title" class="mt-4">My Other Platforms</h2>
+                <a id="social-button" class="tiktok-black" href="@Html.Raw("https://www.tiktok.com/@officialsassyplanner?lang=en")"><i class="fa-brands fa-tiktok"></i></a>
+                <a class="etsy" href="https://www.etsy.com/uk/shop/TheSassyPlannerUK"><i class="fa-brands fa-etsy"></i></a>
+                <a id="social-button" class="pinterest-red" href="https://www.pinterest.co.uk/sassyplanner/"><i class="fa-brands fa-pinterest"></i></a>
+                <a id="social-button" class="facebook-blue" href="https://www.facebook.com/thesassyplanner/"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            
+        </div>
+
+        <script>
+            //This function cycles between the tabs depending on which one has been clicked
+            function openTab(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            document.getElementById("aboutBtn").click();
+
+        </script>
+
+        <!-- End of adapted code -->
+    </div>
+    
+</body>

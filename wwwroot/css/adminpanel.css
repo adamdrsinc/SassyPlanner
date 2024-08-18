@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #FFFDF6 !important;
+}
+
+#hyperlink-to-button {
+    background-color: #FFE5D9 !important;
+    text-decoration: none !important;
+    color: black !important;
+    font-family: Calibri !important;
+    border-color: black !important;
+    border-radius: 5px !important;
+}
+
+.embolden{
+    font-weight: bold !important;
+}

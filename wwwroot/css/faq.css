@@ -1,0 +1,77 @@
+﻿/* Custom CSS for FAQ page */
+
+/* Body styles */
+body {
+    font-family: Calibri, sans-serif;
+    background-color: #FFFDF6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* FAQ title */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: Georgia;
+}
+h3 {
+    font-family: Georgia;
+}
+p{
+    font-family:Calibri;
+}
+
+h6 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Calibri;
+}
+
+/* Card styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #FFE5D9; /* Set background color for accordion header */
+}
+
+    .card-header button {
+        background-color: transparent;
+        border: none;
+        color: black;
+        text-decoration: none;
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+.card-body {
+    padding: 20px;
+}
+
+/* Custom icons */
+.card-header button::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f077'; /* Plus icon */
+    float: right;
+    color: black;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.card-header button.collapsed::after {
+    content: '\f078'; /* Minus icon */
+}
+
+/* Rotate icon when expanded */
+.card-header button:not(.collapsed)::after {
+    transform: rotate(0deg);
+}
+

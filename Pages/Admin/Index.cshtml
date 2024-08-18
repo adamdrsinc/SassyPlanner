@@ -1,0 +1,89 @@
+﻿@page
+@model currentworkingsassyplanner.Pages.Admin.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Made by Adam Sinclair, slightly edited by sam -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Boilerplate</title>
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="stylesheet" href="~/css/general.css">
+    <link rel="stylesheet" href="~/css/adminpanel.css" />
+</head>
+
+<body class="text-center">
+    <h1 class="mt-5" style="font-family:Georgia;">Administrator Panel</h1>
+    <p>This section allows you to manage the products available in the shop. You can create new items, edit existing items, delete existing items and view the details page for each item.</p>
+    <p>
+        <a asp-page="Create" id="hyperlink-to-button" class="p-2">Create New</a>
+    </p>
+
+    <div class="container-fluid">
+        <div class="row text-center justify-content-start py-2">
+            <div class="col-sm-12 col-md-6 col-lg-4" style="font-weight: bold;">
+                Product Name
+
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-1" style="font-weight: bold;">
+                Price
+
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-2" style="font-weight: bold;">
+                Product Type
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-2" style="font-weight: bold;">
+                Style
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-5"></div>
+
+        </div>
+    </div>
+
+    @foreach(var item in Model.ProductTBL){
+
+        <hr />
+
+        <div class="container-fluid">
+            <div class="row text-center justify-content-start py-2">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-1">
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-2">
+                    @Html.DisplayFor(modelItem => item.ProductType)
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-2">
+                    @Html.DisplayFor(modelItem => item.Style)
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-1">
+                    <a id="hyperlink-to-button" class="px-3 py-1" asp-page="/Details" asp-route-id="@item.ProductID">Details</a>
+
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-1">
+                    <a id="hyperlink-to-button" class="px-3 py-1" asp-page="./Delete" asp-route-id="@item.ProductID">Delete</a>
+
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-1">
+                    <a id="hyperlink-to-button" class="px-3 py-1" asp-page="./Edit" asp-route-id="@item.ProductID">Edit</a>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</body>
+</html>

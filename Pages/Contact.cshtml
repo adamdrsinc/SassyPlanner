@@ -1,0 +1,113 @@
+﻿@page
+@model currentworkingsassyplanner.Pages.ContactModel
+@{
+}
+
+<!-- Made by Adam Sinclair -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Boilerplate</title>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="~/css/general.css">
+    <link rel="stylesheet" href="~/css/contact.css">
+</head>
+
+<body>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center text-center my-lg-5">
+            <h1 id="g-h2-styling">Contact</h1>
+        </div>
+
+        <div class="d-flex row">
+
+            <div class="col-sm-6">
+
+                <h3 id="g-h3-styling">Email</h3>
+                <form method="post">
+                    <div id="g-body-styling text-center">
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-7">
+                                <input id="g-background-color-only" class="form-control" asp-for="m_Name" />
+                                <span asp-validation-for="m_Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Subject</label>
+                            <div class="col-sm-7">
+                                <input id="g-background-color-only" type="form-control" class="form-control" asp-for="m_Subject" />
+                                <span asp-validation-for="m_Subject" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Email</label>
+                            <div class="col-sm-7">
+                                <input id="g-background-color-only" type="form-control" class="form-control" asp-for="m_Email" />
+                                <span asp-validation-for="m_Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Message</label>
+                            <div class="col-sm-7">
+                                <textarea id="textarea-contact" class="form-control" asp-for="m_Message"></textarea>
+                                <span asp-validation-for="m_Message" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <button id="g-button-style-blue" type="submit" class="d-flex btn my-2 justify-content-end" asp-page-handler="SendEmail">Send Email</button>
+                        <!-- id="send-email-button" -->
+                    </div>
+                </form>
+                @if (Model.m_ErrorMessage.Length > 0)
+                {
+                    <div id="g-body-styling" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>@Model.m_ErrorMessage</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                else if (Model.m_SuccessMessage.Length > 0)
+                {
+                    <div id="g-body-styling" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>@Model.m_SuccessMessage</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+            </div>
+
+            <div class="col-sm-6">
+                <h3 id="g-h3-styling">PO Box</h3>
+                <p id="g-body-styling">
+                    The Sassy Planner Co.
+                    <br />
+                    Unit 53
+                    <br />
+                    CoWorkz
+                    <br />
+                    Minerva Avenue
+                    <br />
+                    Chester
+                    <br />
+                    United Kingdom
+                    <br />
+                    CH1 4QL
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+    
+
+</html>

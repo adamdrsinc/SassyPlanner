@@ -1,0 +1,81 @@
+﻿@page
+@model currentworkingsassyplanner.Pages.Admin.CreateModel
+
+
+@{
+
+    //Edited by Adam Sinclair, scaffolded from Razor Pages scaffolding.
+
+    ViewData["Title"] = "Create";
+}
+<head>
+    <link rel="stylesheet" href="~/css/create.css">
+</head>
+
+<h1 id="header-font">Create</h1>
+
+<h4 id="header-font">Product Table</h4>
+<hr />
+
+<body id="off-white" id="calibri-font">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.ProductName" class="control-label">Product Name</label>
+                    <input asp-for="m_NewProduct.ProductName" class="form-control" />
+                    <span asp-validation-for="m_NewProduct.ProductName" class="text-danger"></span>
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.ProductType" class="control-label">Product Type</label>
+                    <select asp-for="m_NewProduct.ProductType" class="form-control">
+                        <option value="AcademicPlanner">Academic Planner</option>
+                        <option value="WeeklyLessonPlanner">Weekly Lesson Planner</option>
+                        <option value="DailyLessonPlanner">Daily Lesson Planner</option>
+                        <option value="Notebook">Notebook</option>
+                        <option value="Sticker">Sticker</option>
+                    </select>
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.Style" class="control-label">Style</label>
+                    <select asp-for="m_NewProduct.Style" class="form-control">
+                        <option value="Floral">Floral</option>
+                        <option value="Animals">Animals</option>
+                        <option value="Pattern">Pattern</option>
+                        <option value="Landscape">Landscape</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.ProductImageDescription" class="control-label">Product Image Description</label>
+                    <textarea asp-for="m_NewProduct.ProductImageDescription" class="form-control"></textarea>
+                    <span asp-validation-for="m_NewProduct.ProductImageDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.ProductImageData" class="control-label">Product Image Data</label>
+                    <div>Upload Image:
+                        <input type="file" id="file1" name="file1"/>
+                    </div>
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="m_NewProduct.ProductPrice" class="control-label">Price</label>
+                    <input asp-for="m_NewProduct.ProductPrice" class="form-control" />
+                    <span asp-validation-for="m_NewProduct.ProductPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group my-3">
+                    <input id="create-button" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-page="Index" id="back-to-list">Back to List </a>
+    </div>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

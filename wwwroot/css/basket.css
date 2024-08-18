@@ -1,0 +1,26 @@
+﻿body {
+    background-color: #FFFDF6;
+}
+
+h1{
+    font-family: Georgia;
+}
+
+p{
+    font-family: Calibri;
+}
+
+thead {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+}
+
+tbody {
+    background-color: #E6DECA;
+    font-family: Calibri;
+}
+
+#button {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+}

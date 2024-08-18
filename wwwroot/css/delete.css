@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #FFFDF6;
+}
+
+.large-image {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+
+h1 {
+    font-family: Georgia;
+}
+h3 {
+    font-family: Calibri;
+}

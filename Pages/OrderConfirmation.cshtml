@@ -1,0 +1,32 @@
+﻿@page
+@model currentworkingsassyplanner.Pages.OrderConfirmationModel
+@{
+    ViewData["Title"] = "Order Confirmed!";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/orderConfirmation.css" />
+</head>
+
+<body>
+    <h1>Thank you for your order!</h1>
+
+    @if(Model.OrderInfo == null) //checks if the order info was successfully gathered and if not, displays a different message
+    {
+        <p>Could not retrieve order info</p>
+    }
+    else //otherwise displays the details related to the order, similar to a receipt
+    {
+        @foreach (var info in Model.OrderInfo)
+        {
+            <p>Order ID: @info.OrderID.ToString("C")</p>
+            <p>Order Total: @info.OrderTotal.ToString("C")</p>
+            <p>Order Date: @info.OrderDate.ToString("C")</p>
+            <p>Delivery address: @info.DeliveryAddress</p>
+        }
+    }
+
+    <!-- A pair of buttons to allow the user to easily return to the home page or shop page -->
+    <p><a asp-page="/Index"><button class="link-primary">Return to homepage</button></a> <a asp-page="/Shop"><button class="link-primary">Keep Shopping</button></a></p>
+    
+</body>

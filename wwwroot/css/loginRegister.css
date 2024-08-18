@@ -1,0 +1,29 @@
+﻿body {
+    background-color: #FFFDF6 !important;
+}
+
+#main-container{
+    text-align:center;
+    justify-content:center;
+    display:grid;
+}
+
+#login-form {
+    width: 30em;
+}
+
+#login-submit {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+}
+
+#registerSubmit {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+}
+
+#pword{
+    margin-left:0;
+    margin-right:0;
+
+}

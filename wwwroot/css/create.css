@@ -1,0 +1,22 @@
+﻿#off-white {
+    background-color: #FFFDF6;
+}
+#calibri-font {
+    font-family: Calibri;
+}
+#header-font {
+    font-family: Georgia;
+    font-weight: bold;
+}
+#create-button {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+    border-color: black;
+    font-weight: bold;
+    color: black;
+}
+#back-to-list {
+    font-family: Calibri;
+    color: black;
+    font-weight: bold;
+}

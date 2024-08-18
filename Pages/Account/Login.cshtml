@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    //ViewData["Title"] = "Log in";
+    Layout = "_Layout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/loginRegister.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+</head>
+
+<div id="main-container">
+    <h2 class="mt-5" id="h3-heading">Log In</h2>
+        <div id="login-form">
+            <form id="account" method="post">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating my-2">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-2">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div>
+                <button id="login-submit" type="submit" class="w-100 btn py-2 px-3 my-1 mb-3 fw-bold">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" class="text-dark" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" class="text-dark" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
+                    </p>
+                    
+                </div>
+            </form>
+        </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</div>
+

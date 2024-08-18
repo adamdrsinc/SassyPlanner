@@ -1,0 +1,22 @@
+﻿body {
+    background-color: #FFFDF6;
+}
+
+h1 {
+    font-family: Georgia;
+    text-align: center;
+    background-color: #FFE5D9;
+    border-radius: 10px;
+}
+
+p {
+    font-family: Calibri;
+    text-align: center;
+}
+
+button {
+    background-color: #FFE5D9;
+    font-family: Calibri;
+    border: none;
+    border-radius: 10px;
+}

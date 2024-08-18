@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    
+    <div id="logout-basket" class="d-flex flex-row">
+        <div class="d-flex flex-column">
+            <a id="basket-button" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-regular fa-user"></i></a>
+        </div>
+        
+
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <!--<button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>-->
+            <button id="logout" type="submit" class="nav-link"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </form>
+
+        <a id="basket-button" class="nav-link" asp-page="/Basket"><i class="fa-solid fa-basket-shopping"></i></a>
+    </div>
+    
+
+}
+else
+{
+    <div id="login-basket" class="d-flex flex-row">
+        <a id="basket-button" class="nav-link" asp-page="/Account/Login"><i class="fa-regular fa-user"></i></a>
+        <a id="basket-button" class="nav-link" asp-page="/Basket"><i class="fa-solid fa-basket-shopping"></i></a>
+    </div>
+    
+}
+

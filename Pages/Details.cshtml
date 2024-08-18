@@ -1,0 +1,296 @@
+﻿
+@page
+@model currentworkingsassyplanner.Pages.DetailsModel
+<!--large majority Ajay & a small contribution from sam-->
+
+    <h2>@Model.ProductTBL.ProductName</h2>
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/testbootstrap.css" />
+    <link rel="stylesheet" href="/css/details page.css" />
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- Row for Carousel and Dropdowns -->
+        <div class="row">
+            <!-- Column for Carousel -->
+            <div class="col-md-6">
+
+                <div class="large-image-container">
+                    @{
+                        // Retrieve the product details
+                        var product = Model.ProductTBL;
+
+                        // Display the product image if available
+                        if (product != null)
+                        {
+                            <img class="large-image" src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(product.ProductImageData))" alt="Large Image">
+                        }
+                        else
+                        {
+                            <p>Product not found.</p>
+                        }
+                    }
+                </div>
+
+                <div style="margin-top: 30px;"></div>
+
+                <div class="carousel">
+                    <img src="~/img/productpage1.webp" alt="Image 1">
+                    <img src="~/img/productpage2.webp" alt="Image 2">
+                    <img src="~/img/productpage3.webp" alt="Image 3">
+                    <img src="~/img/productpage4.webp" alt="Image 4">
+                    <img src="~/img/productpage5.webp" alt="Image 5">
+                    <img src="~/img/productpage6.webp" alt="Image 6">
+                    <img src="~/img/productpage7.webp" alt="Image 7">
+                    <img src="~/img/productpage8.webp" alt="Image 8">
+                    <img src="~/img/productpage9.webp" alt="Image 9">
+                    <img src="~/img/productpage10.webp" alt="Image 10">
+                    <img src="~/img/productpage11.webp" alt="Image 11">
+
+                </div>
+
+
+                <script>
+                    // JavaScript to handle image selection from the carousel
+                    const carousel = document.querySelector('.carousel');
+                    const largeImage = document.querySelector('.large-image');
+
+                    carousel.addEventListener('click', e => {
+                        if (e.target.tagName === 'IMG') {
+                            // Update the large image source to the selected image
+                            largeImage.src = e.target.src;
+                        }
+                    });
+                </script>
+
+            </div>
+
+            <!-- Column for Dropdowns -->
+
+            <div class="col-md-6">
+                <h3>£@Model.ProductTBL.ProductPrice</h3> 
+                <form method="post">
+                    <div id="details-body-styling">
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Personalisation</label>
+                            <div class="col-sm-7">
+                                <select name="PersonalisationText" class="form-control">
+                                    <option value="My name on the cover">My name on the cover</option>
+                                    <option value="No personalization" selected>No personalization</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Spiral Colour</label>
+                            <div class="col-sm-7">
+                                <select name="spiralColour" class="form-control">
+                                    <option value="Gold Effect Spiral">Gold Effect Spiral</option>
+                                    <option value="Clear (Incl as standard)" selected>Clear (Incl as standard)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Start Month</label>
+                            <div class="col-sm-7">
+                                <select name="startMonth" class="form-control">
+                                    <option value="August"selected>August</option>
+                                    <option value="September">September</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Internal Pages</label>
+                            <div class="col-sm-7">
+                                <select name="internalPages" class="form-control">
+                                    <option value="Full Colour Inside"selected>Full Colour Inside</option>
+                                    <option value="Cottage Core Neutral">Cottage Core Neutral</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Planner Size</label>
+                            <div class="col-sm-7">
+                                <select name="plannerSize" class="form-control">
+                                    <option value="A5+"selected>A5+</option>
+                                    <option value="A4">A4</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Personalisation Required: (optional)</label>
+                            <div class="col-sm-7">
+                                <textarea id="textarea-contact" class="form-control" name="m_Message"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <label class="col-sm-4 col-form-label">Quantity</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px;"></div>
+
+                        
+                    </div>
+
+
+                    
+                    <button id="cart-button" type="submit" class="btn btn-primary" asp-page-handler="AddToCart" asp-route-ProductID="@Model.ProductTBL.ProductID">Add to Basket</button>
+
+                </form>
+
+                <div style="margin-top: 60px;"></div>
+                <div class="coupon-container">
+                    <div class="coupon-form-row">
+
+
+                        <label class="col-sm-4 col-form-label">
+                            Add your email to get discount!
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="g-background-color-only" type="form-control" class="form-control" name="m_Email" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- Accordion Section -->
+    <div class="row mt-5">
+        @* <div class="col-md-6"> *@
+        <div class="accordion accordion-flush" id="accordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        Description
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                         @Model.ProductTBL.ProductImageDescription 
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Details
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <p>Stay organised with my new 2024/2025 Personalised Planners all made in house Chester UK. This 12 month week to view planner/diary features vertical layouts and pretty backgrounds throughout, with the option to choose from full colour or neutral pages (cottage core neutral). Keep track of your schedule with yearly views, weekly views, monthly overviews, and monthly notes pages. With plenty of space for notes and appointments, this planner is perfect for staying on top of your busy life. Personalise it with your name for a unique touch!</p>
+
+                        <ul>
+                            <li>2024/2025 Week to view vertical pretty planner with 5 checklist/registration & 10 notes pages...</li>
+                            <li>Yearly Views, Weekly Views, Monthly Overviews, Monthly Notes</li>
+                            <li>Various pretty backgrounds throughout... Full colour! Or Choose the 'Cottage Core Neutral'</li>
+                            <li>Plan how you want to plan! Unrestricted... No fuss no useless pages!</li>
+                            <li>Monday start to the week and also on the monthly view...</li>
+                            <li>Plenty of space to write in list format or to note take on the start of each monthly layout...</li>
+                            <li>Flexible/Soft Cover with thick frosted protective sleeves</li>
+                        </ul>
+
+                        <p><strong>Additional pages included in all planners:- (see video at the top of home page)</strong></p>
+
+                        <ul>
+                            <li>10 notepages (at the rear)</li>
+                            <li>5 Double page spreads for registration/grades/checklist</li>
+                            <li>4 Timetable pages</li>
+                            <li>Year to view calendar & year at a glance (at the front)</li>
+                            <li>Ideas for the year boxes page</li>
+                            <li>Important monthly events pages at the beginning of each month</li>
+                        </ul>
+
+                        <p>🎀Handmade in Chester England</p>
+                        <p>🎀Thick quality paper sourced from a very local paper mill utilising sustainable managed forests</p>
+                        <p>🎀Clear Eco friendly acetate covers front and back to protect your planner! (Flexible/Soft Cover)</p>
+                        <p>🎀Added notes pages at the back for your notes!</p>
+                        <p>🎀Clear spiral bound as standard (You can choose gold effect as an upgrade), 166 pages of superior quality paper to write on, your pens & highlighters will love you for this!</p>
+
+                        <p><strong>Personalised - add your name included free!</strong></p>
+                        <p>(PS. You dont have to - just leave blank if you dont want it!)</p>
+
+                        <p><strong>🎀 FREE SASSY PLANNER BOOKMARK!!! 🎀</strong></p>
+
+                        <p><strong>Planner Size</strong></p>
+                        <ul>
+                            <li>(A5+ CLASSIC) 23.5cm x 18cm / 9.5'' x 7'' Note: A5+ is larger than standard A5 size but smaller than A4</li>
+                            <li>A4* Size (Slightly smaller than A4 by 5mm each side, due to trimming process)</li>
+                        </ul>
+
+                        <p><strong>OPTIONS AS EXTRAS:</strong></p>
+                        <p>Optional upgrade to a gold metallic effect spiral (adds a luxury touch)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @* </div> *@
+        <div style="margin-top: 30px;"></div>
+        <div>
+            <h5>ALL ABOUT THE SASSY PLANNER:</h5>
+
+
+            <p>All my planners are handmade in my lovely office in Chester. Every single one gets the personal touch, checked at every stage of printing, punching and binding before they leave and do their ultimate job of making your plans for 2024/2025 come to life! I am in my seventh+ year of making these lovely teacher planners in house and I’m a real perfectionist with them!</p> <p>I have sourced the very best paper and inks for these planners, they are not like your standard shop diaries on thin, bleed-through paper. They are not mass produced in China like nearly every other planner you find. Others may be 'designed' in the UK but printed & shipped in from elsewhere ie China!  My planners are handmade, designed, start to finish, by me, in Chester.</p>  <p>Your pens will love them... The layout is designed by myself, as I’m a graphic designer too! Everything is done in house so if you want to know any more please message me I am more than happy to help!</p>
+
+            <p>After all, I know how hard it is finding a planner you love... that’s why I created this... I couldn’t find one that I loved so I just made them myself! 💕</p>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script>
+        function selectOption(targetId, value) {
+            document.getElementById(targetId + 'Dropdown').innerText = value;
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</body>
+</html>

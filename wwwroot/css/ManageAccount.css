@@ -1,0 +1,73 @@
+﻿
+body {
+    background-color: #FFFDF6;
+    font-family: Georgia;
+    
+}
+
+#main-container {
+    text-align: center;
+    justify-content: center;
+    display: grid;
+}
+
+#profile-form {
+    width: 30em;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-floating {
+    margin-bottom: 10px;
+}
+
+
+
+.text-danger {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+h1{
+    text-align:center;
+    margin:2vw;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #FFE5D9;
+    color:black;
+}
+.nav-link{
+    color:black;
+}
+
+
+
+#email-form {
+    width: 30em;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
+
+.btn-primary {
+    background-color: #FFE5D9;
+    border: none;
+    font-family: Calibri, sans-serif;
+    font-size: 1.25rem;
+    color: #000;
+    cursor: pointer;
+}
+.btn-primary:hover{
+    background-color: #FFC2B3;
+    color:black;
+}
+
+
+#change-password-form {
+    width: 30em;
+    margin: 0 auto;
+    text-align: left;
+}
+    
